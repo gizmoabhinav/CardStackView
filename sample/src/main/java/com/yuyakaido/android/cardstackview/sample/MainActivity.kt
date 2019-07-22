@@ -273,16 +273,16 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     private fun createSpots(): List<Spot> {
         val spots = ArrayList<Spot>()
-        spots.add(Spot(name = "Design doc for new feature", subject = "Anubhav", source = "teams"))
-        spots.add(Spot(name = "Organize all-hands", subject = "Vinay", source = "email"))
-        spots.add(Spot(name = "What's the status of this bug?", subject = "Navin", source = "email"))
-        spots.add(Spot(name = "Sync up with Bangalore team", subject = "Sameer", source = "email"))
-        spots.add(Spot(name = "Bug bash for groups", subject = "Shashi", source = "email"))
-        spots.add(Spot(name = "PR review pending", subject = "Sheena", source = "email"))
-        spots.add(Spot(name = "New hire orientation", subject = "Shwetha", source = "excel"))
-        spots.add(Spot(name = "Hackathon ideas?", subject = "Anubhav", source = "email"))
-        spots.add(Spot(name = "1:1 with manager", subject = "Anubhav", source = "email"))
-        spots.add(Spot(name = "Update bug status", subject = "Abhinav", source = "email"))
+        spots.add(Spot(subject = "Design doc for new feature", name = "Anubhav", source = "teams"))
+        spots.add(Spot(subject = "Organize all-hands", name = "Vinay", source = "email"))
+        spots.add(Spot(subject = "What's the status of this bug?", name = "Navin", source = "email"))
+        spots.add(Spot(subject = "Sync up with Bangalore team", name = "Sameer", source = "email"))
+        spots.add(Spot(subject = "Bug bash for groups", name = "Shashi", source = "email"))
+        spots.add(Spot(subject = "PR review pending", name = "Sheena", source = "email"))
+        spots.add(Spot(subject = "New hire orientation", name = "Shwetha", source = "excel"))
+        spots.add(Spot(subject = "Hackathon ideas?", name = "Anubhav", source = "email"))
+        spots.add(Spot(subject = "1:1 with manager", name = "Anubhav", source = "email"))
+        spots.add(Spot(subject = "Update bug status", name = "Abhinav", source = "email"))
         return spots
     }
 

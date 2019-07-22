@@ -1,11 +1,14 @@
 package com.yuyakaido.android.cardstackview.sample
 
+import android.content.Intent
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class CardStackAdapter(
@@ -22,7 +25,13 @@ class CardStackAdapter(
         holder.name.text = "${spot.name}"
         holder.city.text = spot.subject
         holder.itemView.setOnClickListener { v ->
-            Toast.makeText(v.context, spot.name, Toast.LENGTH_SHORT).show()
+            var intent = Intent(v.context, CardFullViewActivity::class.java)
+            intent.putExtra("name", spot.name)
+            intent.putExtra("subject", spot.subject)
+            intent.putExtra("content", spot.content)
+            intent.putExtra("source", spot.source)
+            intent.putExtra("summary", spot.summary)
+            startActivity(v.context, intent, null)
         }
     }
 

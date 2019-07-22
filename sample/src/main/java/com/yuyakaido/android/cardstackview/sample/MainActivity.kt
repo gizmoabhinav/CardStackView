@@ -273,13 +273,13 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     private fun createSpots(): List<Spot> {
         val spots = ArrayList<Spot>()
-        spots.add(Spot(name = "Design doc for new feature", subject = "Anubhav", source = "email"))
+        spots.add(Spot(name = "Design doc for new feature", subject = "Anubhav", source = "teams"))
         spots.add(Spot(name = "Organize all-hands", subject = "Vinay", source = "email"))
         spots.add(Spot(name = "What's the status of this bug?", subject = "Navin", source = "email"))
         spots.add(Spot(name = "Sync up with Bangalore team", subject = "Sameer", source = "email"))
         spots.add(Spot(name = "Bug bash for groups", subject = "Shashi", source = "email"))
         spots.add(Spot(name = "PR review pending", subject = "Sheena", source = "email"))
-        spots.add(Spot(name = "New hire orientation", subject = "Shwetha", source = "email"))
+        spots.add(Spot(name = "New hire orientation", subject = "Shwetha", source = "excel"))
         spots.add(Spot(name = "Hackathon ideas?", subject = "Anubhav", source = "email"))
         spots.add(Spot(name = "1:1 with manager", subject = "Anubhav", source = "email"))
         spots.add(Spot(name = "Update bug status", subject = "Abhinav", source = "email"))

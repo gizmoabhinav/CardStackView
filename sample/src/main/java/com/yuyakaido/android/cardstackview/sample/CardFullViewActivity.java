@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardFullViewActivity extends AppCompatActivity {
     private String name;
@@ -13,6 +18,7 @@ public class CardFullViewActivity extends AppCompatActivity {
     private String content;
     private String summary;
     private String source;
+    private String[] tags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,7 @@ public class CardFullViewActivity extends AppCompatActivity {
         content = intent.getStringExtra("content");
         summary = intent.getStringExtra("summary");
         source = intent.getStringExtra("source");
+        tags =  intent.getStringArrayExtra("tags");
 
         setupUI();
     }
@@ -40,5 +47,18 @@ public class CardFullViewActivity extends AppCompatActivity {
         }
 
         ((ImageView)findViewById(R.id.source_icon)).setImageResource(sourceRes);
+
+        ((TextView)findViewById(R.id.subject)).setText(subject);
+
+        ((TextView)findViewById(R.id.summary)).setText(summary);
+
+        ((TextView)findViewById(R.id.content)).setText(content);
+
+        ((TextView)findViewById(R.id.tag1)).setText(tags[0]);
+
+        if(tags.length > 1){
+            ((TextView)findViewById(R.id.tag2)).setText(tags[1]);
+            findViewById(R.id.tag2).setVisibility(View.VISIBLE);
+        }
     }
 }

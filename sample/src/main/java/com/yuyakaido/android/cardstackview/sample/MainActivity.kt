@@ -61,12 +61,12 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     override fun onCardAppeared(view: View, position: Int) {
-        val textView = view.findViewById<TextView>(R.id.item_name)
+        val textView = view.findViewById<TextView>(R.id.sender_name)
         Log.d("CardStackView", "onCardAppeared: ($position) ${textView.text}")
     }
 
     override fun onCardDisappeared(view: View, position: Int) {
-        val textView = view.findViewById<TextView>(R.id.item_name)
+        val textView = view.findViewById<TextView>(R.id.sender_name)
         Log.d("CardStackView", "onCardDisappeared: ($position) ${textView.text}")
     }
 
@@ -275,13 +275,13 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         val spots = ArrayList<Spot>()
         spots.add(Spot(subject = "Design doc for new feature", name = "Anubhav", source = "teams"))
         spots.add(Spot(subject = "Organize all-hands", name = "Vinay", source = "email"))
-        spots.add(Spot(subject = "What's the status of this bug?", name = "Navin", source = "email"))
+        spots.add(Spot(subject = "What's the status of this bug?", name = "Navin", source = "teams"))
         spots.add(Spot(subject = "Sync up with Bangalore team", name = "Sameer", source = "email"))
-        spots.add(Spot(subject = "Bug bash for groups", name = "Shashi", source = "email"))
+        spots.add(Spot(subject = "Bug bash for groups", name = "Shashi", source = "excel"))
         spots.add(Spot(subject = "PR review pending", name = "Sheena", source = "email"))
         spots.add(Spot(subject = "New hire orientation", name = "Shwetha", source = "excel"))
         spots.add(Spot(subject = "Hackathon ideas?", name = "Anubhav", source = "email"))
-        spots.add(Spot(subject = "1:1 with manager", name = "Anubhav", source = "email"))
+        spots.add(Spot(subject = "1:1 with manager", name = "Anubhav", source = "teams"))
         spots.add(Spot(subject = "Update bug status", name = "Abhinav", source = "email"))
         return spots
     }

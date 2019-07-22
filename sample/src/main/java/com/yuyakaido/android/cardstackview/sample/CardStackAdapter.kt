@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 class CardStackAdapter(
         private var spots: List<Spot> = emptyList()
@@ -21,7 +20,7 @@ class CardStackAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val spot = spots[position]
         holder.name.text = "${spot.name}"
-        holder.city.text = spot.city
+        holder.city.text = spot.subject
         holder.itemView.setOnClickListener { v ->
             Toast.makeText(v.context, spot.name, Toast.LENGTH_SHORT).show()
         }

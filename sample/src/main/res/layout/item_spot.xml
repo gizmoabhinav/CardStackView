@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@android:color/white"
+        android:background="@drawable/outline"
         app:riv_corner_radius="8dp"/>
 
     <LinearLayout

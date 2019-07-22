@@ -273,16 +273,16 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     private fun createSpots(): List<Spot> {
         val spots = ArrayList<Spot>()
-        spots.add(Spot(name = "Yasaka Shrine", city = "Kyoto", url = "https://source.unsplash.com/Xq1ntWruZQI/600x800"))
-        spots.add(Spot(name = "Fushimi Inari Shrine", city = "Kyoto", url = "https://source.unsplash.com/NYyCqdBOKwc/600x800"))
-        spots.add(Spot(name = "Bamboo Forest", city = "Kyoto", url = "https://source.unsplash.com/buF62ewDLcQ/600x800"))
-        spots.add(Spot(name = "Brooklyn Bridge", city = "New York", url = "https://source.unsplash.com/THozNzxEP3g/600x800"))
-        spots.add(Spot(name = "Empire State Building", city = "New York", url = "https://source.unsplash.com/USrZRcRS2Lw/600x800"))
-        spots.add(Spot(name = "The statue of Liberty", city = "New York", url = "https://source.unsplash.com/PeFk7fzxTdk/600x800"))
-        spots.add(Spot(name = "Louvre Museum", city = "Paris", url = "https://source.unsplash.com/LrMWHKqilUw/600x800"))
-        spots.add(Spot(name = "Eiffel Tower", city = "Paris", url = "https://source.unsplash.com/HN-5Z6AmxrM/600x800"))
-        spots.add(Spot(name = "Big Ben", city = "London", url = "https://source.unsplash.com/CdVAUADdqEc/600x800"))
-        spots.add(Spot(name = "Great Wall of China", city = "China", url = "https://source.unsplash.com/AWh9C-QjhE4/600x800"))
+        spots.add(Spot(name = "Design doc for new feature", city = "Anubhav", url = "https://source.unsplash.com/Xq1ntWruZQI/600x800"))
+        spots.add(Spot(name = "Organize all-hands", city = "Vinay", url = "https://source.unsplash.com/NYyCqdBOKwc/600x800"))
+        spots.add(Spot(name = "What's the status of this bug?", city = "Navin", url = "https://source.unsplash.com/buF62ewDLcQ/600x800"))
+        spots.add(Spot(name = "Sync up with Bangalore team", city = "Sameer", url = "https://source.unsplash.com/THozNzxEP3g/600x800"))
+        spots.add(Spot(name = "Bug bash for groups", city = "Shashi", url = "https://source.unsplash.com/USrZRcRS2Lw/600x800"))
+        spots.add(Spot(name = "PR review pending", city = "Sheena", url = "https://source.unsplash.com/PeFk7fzxTdk/600x800"))
+        spots.add(Spot(name = "New hire orientation", city = "Shwetha", url = "https://source.unsplash.com/LrMWHKqilUw/600x800"))
+        spots.add(Spot(name = "Hackathon ideas?", city = "Anubhav", url = "https://source.unsplash.com/HN-5Z6AmxrM/600x800"))
+        spots.add(Spot(name = "1:1 with manager", city = "Anubhav", url = "https://source.unsplash.com/CdVAUADdqEc/600x800"))
+        spots.add(Spot(name = "Update bug status", city = "Abhinav", url = "https://source.unsplash.com/AWh9C-QjhE4/600x800"))
         return spots
     }
 

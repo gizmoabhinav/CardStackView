@@ -2,7 +2,7 @@
 
 <resources>
     <!-- App -->
-    <string name="app_name">CardStackView</string>
+    <string name="app_name">High Priority</string>
 
     <!-- NavigationView -->
     <string name="open_drawer">Open drawer</string>

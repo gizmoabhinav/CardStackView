@@ -45,7 +45,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/rewind_button"
                     android:layout_toStartOf="@+id/rewind_button"
-                    android:src="@drawable/skip_red_24dp"
+                    android:src="@drawable/ic_archive_01"
                     app:backgroundTint="@android:color/white"
                     app:fabSize="auto"
                     app:rippleColor="#22ED7563"/>
@@ -71,7 +71,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/rewind_button"
                     android:layout_toEndOf="@+id/rewind_button"
-                    android:src="@drawable/like_green_24dp"
+                    android:src="@drawable/ic_reply_01"
                     app:backgroundTint="@android:color/white"
                     app:fabSize="auto"
                     app:rippleColor="#226FE2B3"/>

@@ -1,5 +1,6 @@
 package com.yuyakaido.android.cardstackview.sample
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -113,7 +115,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     private fun setupButton() {
-        val skip = findViewById<View>(R.id.skip_button)
+        val skip = findViewById<View>(R.id.archive)
         skip.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                     .setDirection(Direction.Left)
@@ -135,15 +137,13 @@ class MainActivity : AppCompatActivity(), CardStackListener {
             cardStackView.rewind()
         }
 
-        val like = findViewById<View>(R.id.like_button)
+        val like = findViewById<View>(R.id.reply)
         like.setOnClickListener {
-            val setting = SwipeAnimationSetting.Builder()
-                    .setDirection(Direction.Right)
-                    .setDuration(Duration.Normal.duration)
-                    .setInterpolator(AccelerateInterpolator())
-                    .build()
-            manager.setSwipeAnimationSetting(setting)
-            cardStackView.swipe()
+            var spot = adapter.getSpots()[manager.topPosition]
+            var intent = Intent(it.context, ReplyActivity::class.java)
+            intent.putExtra("subject", spot.subject)
+            intent.putExtra("summary", spot.summary)
+            ContextCompat.startActivity(it.context, intent, null)
         }
     }
 

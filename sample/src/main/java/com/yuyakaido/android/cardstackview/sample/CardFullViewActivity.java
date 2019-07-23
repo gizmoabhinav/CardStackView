@@ -1,6 +1,7 @@
 package com.yuyakaido.android.cardstackview.sample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,5 +61,15 @@ public class CardFullViewActivity extends AppCompatActivity {
             ((TextView)findViewById(R.id.tag2)).setText(tags[1]);
             findViewById(R.id.tag2).setVisibility(View.VISIBLE);
         }
+
+        findViewById(R.id.reply).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ReplyActivity.class);
+                intent.putExtra("subject", subject);
+                intent.putExtra("summary", summary);
+                startActivity(intent);
+            }
+        });
     }
 }

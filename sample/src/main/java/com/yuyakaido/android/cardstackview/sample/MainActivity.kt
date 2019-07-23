@@ -313,7 +313,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
                 topicsArray[i] = jsonValues.get(i).getString("Topic")
             }
             val peopleArray = eventJsonObject.getJSONArray("People")
-            var summaryString = "No summary available"
+            var summaryString = emailBody
             if (summaryLinesArray.length() > 0) {
                 summaryString = summaryLinesArray[0].toString()
             }

@@ -72,12 +72,12 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     override fun onCardAppeared(view: View, position: Int) {
-        val textView = view.findViewById<TextView>(R.id.item_name)
+        val textView = view.findViewById<TextView>(R.id.sender_name)
         Log.d("CardStackView", "onCardAppeared: ($position) ${textView.text}")
     }
 
     override fun onCardDisappeared(view: View, position: Int) {
-        val textView = view.findViewById<TextView>(R.id.item_name)
+        val textView = view.findViewById<TextView>(R.id.sender_name)
         Log.d("CardStackView", "onCardDisappeared: ($position) ${textView.text}")
     }
 
@@ -313,23 +313,12 @@ class MainActivity : AppCompatActivity(), CardStackListener {
                 topicsArray[i] = jsonValues.get(i).getString("Topic")
             }
             val peopleArray = eventJsonObject.getJSONArray("People")
-            spots.add(Spot(name = senderName, subject = emailSubject, source = "email", summary = summaryLinesArray.toString(), tags = topicsArray, content = emailBody))
-            Log.d("JSON", eventJsonString)
-            Log.d("JSON", dataJsonString)
-            Log.d("JSON", summaryLinesArray.toString())
-            Log.d("JSON", topicsArray.toString())
-            Log.d("JSON", peopleArray.toString())
+            var summaryString = "No summary available"
+            if (summaryLinesArray.length() > 0) {
+                summaryString = summaryLinesArray[0].toString()
+            }
+            spots.add(Spot(name = senderName, subject = emailSubject, source = "email", summary = summaryString, tags = topicsArray, content = emailBody))
         }
-//        spots.add(Spot(name = "Design doc for new feature", subject = "Anubhav", source = "email"))
-//        spots.add(Spot(name = "Organize all-hands", subject = "Vinay", source = "email"))
-//        spots.add(Spot(name = "What's the status of this bug?", subject = "Navin", source = "email"))
-//        spots.add(Spot(name = "Sync up with Bangalore team", subject = "Sameer", source = "email"))
-//        spots.add(Spot(name = "Bug bash for groups", subject = "Shashi", source = "email"))
-//        spots.add(Spot(name = "PR review pending", subject = "Sheena", source = "email"))
-//        spots.add(Spot(name = "New hire orientation", subject = "Shwetha", source = "email"))
-//        spots.add(Spot(name = "Hackathon ideas?", subject = "Anubhav", source = "email"))
-//        spots.add(Spot(name = "1:1 with manager", subject = "Anubhav", source = "email"))
-//        spots.add(Spot(name = "Update bug status", subject = "Abhinav", source = "email"))
         return spots
     }
 

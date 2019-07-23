@@ -16,7 +16,18 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.google.android.material.navigation.NavigationView
 import com.yuyakaido.android.cardstackview.*
+import org.json.JSONArray
 import java.util.*
+import org.json.JSONObject
+import java.io.*
+import java.nio.file.Files.readAllBytes
+//import android.R
+
+
+
+
+//import jdk.nashorn.internal.runtime.ScriptingFunctions.readLine
+
 
 class MainActivity : AppCompatActivity(), CardStackListener {
 
@@ -273,16 +284,52 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     private fun createSpots(): List<Spot> {
         val spots = ArrayList<Spot>()
-        spots.add(Spot(name = "Design doc for new feature", subject = "Anubhav", source = "email"))
-        spots.add(Spot(name = "Organize all-hands", subject = "Vinay", source = "email"))
-        spots.add(Spot(name = "What's the status of this bug?", subject = "Navin", source = "email"))
-        spots.add(Spot(name = "Sync up with Bangalore team", subject = "Sameer", source = "email"))
-        spots.add(Spot(name = "Bug bash for groups", subject = "Shashi", source = "email"))
-        spots.add(Spot(name = "PR review pending", subject = "Sheena", source = "email"))
-        spots.add(Spot(name = "New hire orientation", subject = "Shwetha", source = "email"))
-        spots.add(Spot(name = "Hackathon ideas?", subject = "Anubhav", source = "email"))
-        spots.add(Spot(name = "1:1 with manager", subject = "Anubhav", source = "email"))
-        spots.add(Spot(name = "Update bug status", subject = "Abhinav", source = "email"))
+        val jsonStr = resources.openRawResource(R.raw.userinsights).bufferedReader().use { it.readText() }
+
+        val jsonObject = JSONObject(jsonStr)
+        var jsonArray = jsonObject.getJSONArray("Communications")
+        for (jsonIndex in 0..(jsonArray.length() - 1)) {
+            val eventJsonString = jsonArray.getJSONObject(jsonIndex).getString("Event")
+            val eventJsonObject = JSONObject(eventJsonString)
+            val dataJsonString = eventJsonObject.getString("DataJson")
+            val emailCompleteJson = JSONObject(dataJsonString)
+            var emailSubject = emailCompleteJson.getString("Subject")
+            var emailBody = emailCompleteJson.getString("UniqueBody")
+            val senderJsonString = emailCompleteJson.getString("Sender")
+            val senderJson = JSONObject(senderJsonString)
+            val emailJsonString = senderJson.getString( "EmailAddress")
+            val emailIdJson = JSONObject(emailJsonString)
+            val senderName = emailIdJson.getString("Name")
+
+            val summaryLinesArray = eventJsonObject.getJSONArray("SummaryLines")
+            val topicsJsonArray = eventJsonObject.getJSONArray("Topics")
+            val jsonValues = ArrayList<JSONObject>()
+            val topicsArray = Array<String>(topicsJsonArray.length(), {""})
+            for (i in 0 until topicsJsonArray.length()) {
+                jsonValues.add(topicsJsonArray.getJSONObject(i))
+            }
+            jsonValues.sortWith(compareBy({it.getInt("Rank")}, {it.getString("Topic")}))
+            for(i in 0 until jsonValues.size) {
+                topicsArray[i] = jsonValues.get(i).getString("Topic")
+            }
+            val peopleArray = eventJsonObject.getJSONArray("People")
+            spots.add(Spot(name = senderName, subject = emailSubject, source = "email", summary = summaryLinesArray.toString(), tags = topicsArray, content = emailBody))
+            Log.d("JSON", eventJsonString)
+            Log.d("JSON", dataJsonString)
+            Log.d("JSON", summaryLinesArray.toString())
+            Log.d("JSON", topicsArray.toString())
+            Log.d("JSON", peopleArray.toString())
+        }
+//        spots.add(Spot(name = "Design doc for new feature", subject = "Anubhav", source = "email"))
+//        spots.add(Spot(name = "Organize all-hands", subject = "Vinay", source = "email"))
+//        spots.add(Spot(name = "What's the status of this bug?", subject = "Navin", source = "email"))
+//        spots.add(Spot(name = "Sync up with Bangalore team", subject = "Sameer", source = "email"))
+//        spots.add(Spot(name = "Bug bash for groups", subject = "Shashi", source = "email"))
+//        spots.add(Spot(name = "PR review pending", subject = "Sheena", source = "email"))
+//        spots.add(Spot(name = "New hire orientation", subject = "Shwetha", source = "email"))
+//        spots.add(Spot(name = "Hackathon ideas?", subject = "Anubhav", source = "email"))
+//        spots.add(Spot(name = "1:1 with manager", subject = "Anubhav", source = "email"))
+//        spots.add(Spot(name = "Update bug status", subject = "Abhinav", source = "email"))
         return spots
     }
 

@@ -9,6 +9,7 @@ data class Spot(
         val summary: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         val tags:Array<String> = arrayOf<String>("Orientation","Hiring Manager","New Hiring Day")
 ) {
+
     companion object {
         private var counter = 0L
     }

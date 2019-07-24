@@ -38,6 +38,18 @@
                 android:text="Sheena Chhabra"
                 android:textColor="#404852"/>
             <ImageView
+                android:id="@+id/star"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/i_star_outline"
+                android:layout_marginRight="6dp"/>
+            <ImageView
+                android:id="@+id/headfon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/headphones"/>
+            <ImageView
                 android:id="@+id/source_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp" />

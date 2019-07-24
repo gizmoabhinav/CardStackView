@@ -21,15 +21,6 @@ import com.yuyakaido.android.cardstackview.*
 import org.json.JSONArray
 import java.util.*
 import org.json.JSONObject
-import java.io.*
-import java.nio.file.Files.readAllBytes
-//import android.R
-
-
-
-
-//import jdk.nashorn.internal.runtime.ScriptingFunctions.readLine
-
 
 class MainActivity : AppCompatActivity(), CardStackListener {
 
@@ -287,8 +278,22 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         val jsonStr = resources.openRawResource(R.raw.userinsights).bufferedReader().use { it.readText() }
 
         val jsonObject = JSONObject(jsonStr)
-        var jsonArray = jsonObject.getJSONArray("Communications")
-        for (jsonIndex in 0..(jsonArray.length() - 1)) {
+        var unSortedjsonArray = jsonObject.getJSONArray("Communications")
+
+        val jsonValues = ArrayList<JSONObject>()
+        for (i in 0 until unSortedjsonArray.length()) {
+            jsonValues.add(unSortedjsonArray.getJSONObject(i))
+        }
+
+        val jsonArray = JSONArray()
+
+        jsonValues.sortWith(compareBy({it.getInt("Rank")}))
+        for (i in 0 until unSortedjsonArray.length()) {
+            jsonArray.put(jsonValues[i])
+        }
+
+        for (jsonIndex in 0..(jsonArray.length() - 1))
+        {
             val eventJsonString = jsonArray.getJSONObject(jsonIndex).getString("Event")
             val eventJsonObject = JSONObject(eventJsonString)
             val dataJsonString = eventJsonObject.getString("DataJson")
@@ -319,6 +324,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
             }
             spots.add(Spot(name = senderName, subject = emailSubject, source = "email", summary = summaryString, tags = topicsArray, content = emailBody))
         }
+
         return spots
     }
 

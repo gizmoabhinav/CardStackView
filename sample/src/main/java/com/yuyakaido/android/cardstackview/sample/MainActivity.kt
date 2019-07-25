@@ -1,5 +1,6 @@
 package com.yuyakaido.android.cardstackview.sample
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -22,12 +23,12 @@ import org.json.JSONArray
 import java.util.*
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity(), CardStackListener {
+class MainActivity : AppCompatActivity(), CardStackListener, IOnClickListener {
 
     private val drawerLayout by lazy { findViewById<DrawerLayout>(R.id.drawer_layout) }
     private val cardStackView by lazy { findViewById<CardStackView>(R.id.card_stack_view) }
     private val manager by lazy { CardStackLayoutManager(this, this) }
-    private val adapter by lazy { CardStackAdapter(createSpots()) }
+    private val adapter by lazy { CardStackAdapter(createSpots(), this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +50,44 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         Log.d("CardStackView", "onCardDragging: d = ${direction.name}, r = $ratio")
     }
 
+
+    override fun onClick() {
+        var spot = adapter.getSpots()[manager.topPosition]
+        var intent = Intent(this, CardFullViewActivity::class.java)
+        intent.putExtra("name", spot.name)
+        intent.putExtra("subject", spot.subject)
+        intent.putExtra("content", spot.content)
+        intent.putExtra("source", spot.source)
+        intent.putExtra("summary", spot.summary)
+        intent.putExtra("tags", spot.tags)
+        startActivityForResult(intent, 100);
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 100) {
+            if (resultCode == Activity.RESULT_OK) {
+                val setting = SwipeAnimationSetting.Builder()
+                        .setDirection(Direction.Left)
+                        .setDuration(Duration.Normal.duration)
+                        .setInterpolator(AccelerateInterpolator())
+                        .build()
+                manager.setSwipeAnimationSetting(setting)
+                cardStackView.swipe()
+            }
+        }
+    }
+
     override fun onCardSwiped(direction: Direction) {
         Log.d("CardStackView", "onCardSwiped: p = ${manager.topPosition}, d = $direction")
         if (manager.topPosition == adapter.itemCount - 5) {
             paginate()
+        }
+        if (Direction.Right == direction) {
+            var spot = adapter.getSpots()[manager.topPosition]
+            var intent = Intent(this, ReplyActivity::class.java)
+            intent.putExtra("subject", spot.subject)
+            intent.putExtra("summary", spot.summary)
+            ContextCompat.startActivity(this, intent, null)
         }
     }
 

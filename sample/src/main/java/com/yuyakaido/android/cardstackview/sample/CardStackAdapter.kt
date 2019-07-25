@@ -1,18 +1,15 @@
 package com.yuyakaido.android.cardstackview.sample
 
-import android.content.Intent
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class CardStackAdapter(
-        private var spots: List<Spot> = emptyList()
+        private var spots: List<Spot> = emptyList(),
+        private var listener: IOnClickListener
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,14 +41,7 @@ class CardStackAdapter(
         }
 
         holder.itemView.setOnClickListener { v ->
-            var intent = Intent(v.context, CardFullViewActivity::class.java)
-            intent.putExtra("name", spot.name)
-            intent.putExtra("subject", spot.subject)
-            intent.putExtra("content", spot.content)
-            intent.putExtra("source", spot.source)
-            intent.putExtra("summary", spot.summary)
-            intent.putExtra("tags", spot.tags)
-            startActivity(v.context, intent, null)
+            listener.onClick()
         }
     }
 
